@@ -61,19 +61,60 @@ This project isolates those innovations into a mini implementation where each co
 ## 🏗️ Repository Layout
 
 ```text
-src/                  # Core model components and architecture
-src/transformer_modules/ # Isolated attention and MoE blocks
-training/             # Training loop, schedulers, optimizers, metrics, checkpoints
-data/                 # Dataset builders and causal LM dataloaders
-tests/                # CPU-safe component unit tests
-tests/training/       # Training-stack integration tests
-config/               # YAML experiment profiles
-.github/              # Path-aware CI and Dependabot configurations
-paper/                # DeepSeek-V4 paper reference
-proyect_structure/    # Project scope and implementation guide
+.
+├── config/                         # YAML profiles for reproducible experiments
+│   ├── data/                       # dataset presets: synthetic, TinyStories, WikiText-2, AG News, IMDB, MiniPile
+│   ├── model/                      # model variants: tiny, mini, CSA+MoE+mHC+MTP
+│   └── training/                   # CPU smoke and single-GPU training profiles
+│
+├── data/                           # causal LM datasets, tokenization, and dataloader inspection
+│   ├── data_utils.py               # batch normalization helpers used by training/eval
+│   ├── inspection.py               # tensor and dataloader summaries for CLI inspection
+│   ├── syntethic_long_context_retrieval.py
+│   │                                  # local synthetic retrieval task for long-context smoke tests
+│   ├── text_datasets.py            # Hugging Face text presets and generic causal LM loader
+│   └── tinystories_data.py         # TinyStories-specific tokenizer and dataloaders
+│
+├── src/                            # DeepSeek-V4 Mini architecture
+│   ├── deepseek_csa_attention.py   # Compressed Sparse Attention
+│   ├── deepseek_hca_attention.py   # Heavily Compressed Attention
+│   ├── deepseek_moe.py             # DeepSeek-style routed/shared MoE layer
+│   ├── mHC_residuals.py            # Manifold-Constrained Hyper-Connections
+│   ├── deepseek_mtp.py             # Multi-Token Prediction head
+│   ├── deepseek_block.py           # configurable Transformer block composition
+│   ├── mini_deepseek_class.py      # DeepSeekV4LM wrapper
+│   └── transformer_modules/        # baseline RMSNorm, RoPE, MHA, SwiGLU, embeddings, blocks
+│
+├── training/                       # train/eval stack and diagnostics
+│   ├── train_deepseek.py           # high-level orchestration
+│   ├── train_one_epoch.py          # single-epoch training loop
+│   ├── eval_one_epoch.py           # evaluation and qualitative preview
+│   ├── muon_optimizer.py           # Muon + AdamW hybrid optimizer
+│   ├── scheduler.py                # warmup + cosine scheduler
+│   ├── chekpoints.py               # checkpoint save/load utilities
+│   └── *_metrics.py                # LM, MoE, mHC, MTP, and module diagnostics
+│
+├── scripts/                        # operational CLIs
+│   ├── data_cli.py                 # list, download, tokenize, and inspect datasets
+│   ├── train_cli.py                # tiny synthetic training smoke runs
+│   └── inspect_cli.py              # model summaries and module-level test runner
+│
+├── tests/                          # CPU-safe coverage for model behavior and causality
+│   ├── data/                       # dataset preset and causal text loader tests
+│   ├── training/                   # optimizer, scheduler, batch, and tiny-training tests
+│   ├── test_csa.py                 # CSA shape, causality, and gradient checks
+│   ├── test_hca.py                 # HCA compression/local-window checks
+│
+│
+├── notebooks/                      # interactive exploration
+├── paper/                          # local DeepSeek-V4 paper reference
+├── Dockerfile                      # containerized test/dev environment
+├── docker-compose.yml              # compose entrypoint for tests/shell
+├── LICENSE
+└── README.md
 ```
 
-## Installation
+## 🚀 Installation
 
 ```bash
 python -m venv .venv
