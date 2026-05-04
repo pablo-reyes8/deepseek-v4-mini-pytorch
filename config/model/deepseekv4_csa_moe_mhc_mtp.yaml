@@ -1,0 +1,32 @@
+name: deepseekv4_csa_moe_mhc_mtp
+description: Full-feature mini variant for integration tests and ablations.
+model:
+  vocab_size: 4096
+  d_model: 128
+  n_layers: 4
+  max_seq_len: 1024
+  pad_token_id: 0
+  attention_type: csa
+  n_heads: 4
+  head_dim: 32
+  rotary_dim: 32
+  compression_factor: 4
+  top_k_blocks: 8
+  window_size: 32
+  indexer_dim: 32
+  n_indexer_heads: 2
+  query_compression_dim: 32
+  use_attention_sink: true
+  ffn_type: moe
+  num_experts: 8
+  top_k_experts: 2
+  expert_hidden_dim: 256
+  shared_experts: 1
+  shared_hidden_dim: 256
+  balance_loss_weight: 0.01
+  use_mhc: true
+  n_hc: 4
+  mhc_sinkhorn_iters: 20
+  use_mtp: true
+  mtp_depth: 2
+  mtp_hidden_dim: 128

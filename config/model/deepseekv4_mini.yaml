@@ -1,0 +1,31 @@
+name: deepseekv4_mini
+description: Default pedagogical DeepSeek-V4-style model.
+model:
+  vocab_size: 8192
+  d_model: 256
+  n_layers: 6
+  max_seq_len: 2048
+  pad_token_id: 0
+  attention_type: hybrid
+  attention_pattern: [csa, hca]
+  n_heads: 4
+  head_dim: 64
+  rotary_dim: 64
+  compression_factor: 4
+  hca_compression_factor: 16
+  top_k_blocks: 8
+  window_size: 32
+  indexer_dim: 64
+  query_compression_dim: 64
+  ffn_type: moe
+  num_experts: 8
+  top_k_experts: 2
+  expert_hidden_dim: 512
+  shared_experts: 1
+  shared_hidden_dim: 512
+  use_mhc: true
+  n_hc: 4
+  mhc_sinkhorn_iters: 20
+  use_mtp: true
+  mtp_depth: 2
+  mtp_hidden_dim: 256

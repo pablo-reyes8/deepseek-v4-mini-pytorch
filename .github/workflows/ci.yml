@@ -1,0 +1,111 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      model: ${{ steps.filter.outputs.model }}
+      training: ${{ steps.filter.outputs.training }}
+      data: ${{ steps.filter.outputs.data }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            model:
+              - "src/**"
+              - "tests/**"
+              - "!tests/training/**"
+              - "config/**"
+              - "pyproject.toml"
+              - "requirements.txt"
+              - ".github/workflows/**"
+            training:
+              - "training/**"
+              - "tests/training/**"
+              - "src/**"
+              - "data/data_utils.py"
+              - "pyproject.toml"
+              - "requirements.txt"
+              - ".github/workflows/**"
+            data:
+              - "data/**"
+              - "tests/data/**"
+              - "config/data/**"
+              - "pyproject.toml"
+              - "requirements.txt"
+              - ".github/workflows/**"
+
+  quick:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install light dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+      - name: Import smoke
+        run: |
+          python - <<'PY'
+          from src.mini_deepseek_class import DeepSeekV4LM, DeepSeekV4LMConfig
+          cfg = DeepSeekV4LMConfig(vocab_size=32, d_model=16, n_layers=1, max_seq_len=8, attention_type="mha", ffn_type="dense", n_heads=2, head_dim=8, rotary_dim=8)
+          model = DeepSeekV4LM(cfg)
+          print(type(model).__name__)
+          PY
+
+  model-tests:
+    needs: changes
+    if: needs.changes.outputs.model == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev,data]"
+      - name: Run CPU model/component tests
+        run: pytest tests --ignore=tests/training
+
+  training-tests:
+    needs: changes
+    if: needs.changes.outputs.training == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev,data]"
+      - name: Run CPU training tests
+        run: pytest tests/training
+
+  data-tests:
+    needs: changes
+    if: needs.changes.outputs.data == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev,data]"
+      - name: Run dataset loader tests
+        run: pytest tests/data

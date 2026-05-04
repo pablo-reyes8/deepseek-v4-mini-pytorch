@@ -1,0 +1,19 @@
+name: gpu_single
+training:
+  seed: 42
+  deterministic: false
+  device: auto
+  amp_enabled: true
+  amp_dtype: bf16
+  optimizer_type: muon_adamw
+  learning_rate: 0.0003
+  min_learning_rate: 0.00003
+  weight_decay: 0.1
+  warmup_steps: 500
+  epochs: 3
+  grad_accum_steps: 4
+  grad_clip: 1.0
+  eval_every: 1
+  eval_max_batches: 50
+  ckpt_dir: checkpoints/deepseekv4_mini
+  keep_last_n_checkpoints: 3

@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Environments
+.env
+.venv/
+venv/
+env/
+.python-version
+
+# Build/package outputs
+build/
+dist/
+*.egg-info/
+
+# Training artifacts
+checkpoints/
+runs/
+wandb/
+mlruns/
+outputs/
+artifacts/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+metrics.jsonl
+
+# Data artifacts
+data/raw/
+data/processed/
+data/cache/
+*.arrow
+*.parquet
+
+# Notebooks and editor state
+.ipynb_checkpoints/
+.vscode/
+.idea/
+
+# OS/filesystem noise
+.DS_Store
+Thumbs.db
+.proyect_structure/

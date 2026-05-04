@@ -1,0 +1,12 @@
+name: synthetic_long_context
+dataset:
+  type: synthetic_retrieval
+  vocab_size: 216
+  sequence_length: 128
+  num_train_examples: 2048
+  num_val_examples: 256
+  seed: 42
+dataloader:
+  batch_size: 8
+  num_workers: 0
+  pin_memory: false

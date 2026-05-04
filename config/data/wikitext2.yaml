@@ -1,0 +1,13 @@
+name: wikitext2
+dataset:
+  type: hf_text
+  preset: wikitext2
+  block_size: 256
+  vocab_size: 16000
+  max_tokenizer_documents: 50000
+  max_train_documents: 20000
+  max_validation_documents: 2000
+dataloader:
+  batch_size: 8
+  num_workers: 0
+  pin_memory: false

@@ -1,0 +1,17 @@
+name: cpu_smoke
+training:
+  seed: 42
+  deterministic: true
+  device: cpu
+  amp_enabled: false
+  optimizer_type: adamw
+  learning_rate: 0.0003
+  min_learning_rate: 0.00003
+  weight_decay: 0.1
+  epochs: 1
+  grad_accum_steps: 1
+  max_batches_per_epoch: 2
+  eval_max_batches: 2
+  log_every: 1
+  ckpt_dir: checkpoints/cpu_smoke
+  keep_last_n_checkpoints: 1

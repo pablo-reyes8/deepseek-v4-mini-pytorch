@@ -1,0 +1,7 @@
+torch>=2.2
+numpy>=1.26
+pytest>=8.0
+PyYAML>=6.0
+tqdm>=4.66
+datasets>=2.18
+tokenizers>=0.15

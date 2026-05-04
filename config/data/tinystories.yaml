@@ -1,0 +1,12 @@
+name: tinystories
+dataset:
+  type: tinystories
+  split_train: train
+  split_validation: validation
+  tokenizer_path: data/cache/tinystories-tokenizer.json
+  max_seq_len: 256
+  cache_dir: data/cache/tinystories
+dataloader:
+  batch_size: 8
+  num_workers: 2
+  pin_memory: true

@@ -1,0 +1,9 @@
+[project]
+name = "deepseekv4-mini"
+status = "pre-first-push"
+scope = "mini-pedagogical-pytorch-implementation"
+
+[quality]
+cpu_tests = true
+ci_path_aware = true
+config_driven = true

@@ -1,0 +1,13 @@
+name: fineweb_edu_10bt_mincols
+dataset:
+  type: hf_text
+  preset: fineweb_edu_10bt_mincols
+  block_size: 512
+  vocab_size: 32000
+  max_tokenizer_documents: 50000
+  max_train_documents: 20000
+  max_validation_documents: null
+dataloader:
+  batch_size: 4
+  num_workers: 0
+  pin_memory: false

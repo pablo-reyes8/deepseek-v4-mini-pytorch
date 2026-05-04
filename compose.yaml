@@ -1,0 +1,8 @@
+services:
+  tests:
+    build: .
+    command: pytest
+    volumes:
+      - .:/app
+    environment:
+      PYTHONPATH: /app:/app/src

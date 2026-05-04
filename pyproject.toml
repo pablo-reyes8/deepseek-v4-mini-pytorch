@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "deepseekv4-mini"
+version = "0.1.0"
+description = "A mini, pedagogical, CPU-testable PyTorch implementation of DeepSeek-V4-style components."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [{ name = "DeepSeekV4 Mini contributors" }]
+dependencies = [
+  "torch>=2.2",
+  "numpy>=1.26",
+  "PyYAML>=6.0",
+  "tqdm>=4.66",
+]
+
+[project.optional-dependencies]
+data = ["datasets>=2.18", "tokenizers>=0.15"]
+dev = ["pytest>=8.0", "ruff>=0.4"]
+
+[tool.setuptools]
+packages = ["src", "src.transformer_modules", "training", "data"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = [".", "src"]
+addopts = "-ra --strict-markers"
+markers = [
+  "slow: tests that are slower or more memory intensive",
+  "cuda: tests that require CUDA",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["F403", "F405", "E501"]

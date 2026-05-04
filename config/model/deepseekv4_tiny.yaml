@@ -1,0 +1,16 @@
+name: deepseekv4_tiny
+description: CPU smoke-test model for CI and local debugging.
+model:
+  vocab_size: 128
+  d_model: 32
+  n_layers: 1
+  max_seq_len: 32
+  pad_token_id: 0
+  attention_type: mha
+  n_heads: 4
+  head_dim: 8
+  rotary_dim: 8
+  ffn_type: dense
+  mlp_hidden_dim: 64
+  use_mhc: false
+  use_mtp: false

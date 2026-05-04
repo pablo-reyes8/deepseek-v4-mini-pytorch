@@ -1,0 +1,13 @@
+name: ag_news
+dataset:
+  type: hf_text
+  preset: ag_news
+  block_size: 128
+  vocab_size: 12000
+  max_tokenizer_documents: 50000
+  max_train_documents: 20000
+  max_validation_documents: 2000
+dataloader:
+  batch_size: 16
+  num_workers: 0
+  pin_memory: false
