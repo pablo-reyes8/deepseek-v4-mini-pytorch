@@ -23,6 +23,7 @@ This repository is not a toy Transformer wrapper or a production model clone. It
 - [🎯 Why This Repo Exists](#-why-this-repo-exists)
 - [Architecture Coverage](#architecture-coverage)
 - [🏗️ Repository Layout](#️-repository-layout)
+- [📘 Documentation](#-documentation)
 - [Installation](#installation)
 - [Run Tests](#run-tests)
 - [⚙️ Model Configs](#️-model-configs)
@@ -99,6 +100,13 @@ This project isolates those innovations into a mini implementation where each co
 │   ├── train_cli.py                # tiny synthetic training smoke runs
 │   └── inspect_cli.py              # model summaries and module-level test runner
 │
+├── docs/                           # architecture and configuration reference
+│   ├── architecture/               # CSA, HCA, MoE, mHC, MTP, and model overview
+│   ├── training/                   # pipeline, Muon, scheduler, autocast, metrics, EMA/checkpoints
+│   ├── config_reference/           # hyperparameter reference by subsystem
+│   ├── data/                       # dataset guide
+│   └── cli/                        # command line reference
+│
 ├── tests/                          # CPU-safe coverage for model behavior and causality
 │   ├── data/                       # dataset preset and causal text loader tests
 │   ├── training/                   # optimizer, scheduler, batch, and tiny-training tests
@@ -113,6 +121,27 @@ This project isolates those innovations into a mini implementation where each co
 ├── LICENSE
 └── README.md
 ```
+
+## 📘 Documentation
+
+The full technical documentation lives in [`docs/`](docs/README.md). It is organized around the two things that matter most for this project: understanding the architecture and knowing exactly which hyperparameters are configurable.
+
+Recommended entry points:
+
+- [Architecture Overview](docs/architecture/overview.md)
+- [Attention Modules: MHA, HCA, CSA](docs/architecture/attention_modules.md)
+- [HCA: Heavily Compressed Attention](docs/architecture/hca.md)
+- [CSA: Compressed Sparse Attention](docs/architecture/csa.md)
+- [MoE and Dense FFN](docs/architecture/moe_and_ffn.md)
+- [mHC Residual Streams](docs/architecture/mhc.md)
+- [MTP Auxiliary Prediction](docs/architecture/mtp.md)
+- [Training Pipeline](docs/training/pipeline.md)
+- [Muon Optimizer](docs/training/muon.md)
+- [Metrics and Diagnostics](docs/training/metrics.md)
+- [Model Config Reference](docs/config_reference/model.md)
+- [Training Config Reference](docs/config_reference/training.md)
+- [Data Config Reference](docs/config_reference/data.md)
+- [CLI Reference](docs/cli/reference.md)
 
 ## 🚀 Installation
 
@@ -147,7 +176,7 @@ Dataset loader tests:
 pytest tests/data
 ```
 
-*Current validation on CPU: `649 passed, 4 skipped`*
+*Current validation on CPU: `655 passed, 4 skipped`*
 
 ## ⚙️ Model Configs
 
