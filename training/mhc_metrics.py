@@ -14,12 +14,11 @@ def _collect_mhc_abc_dicts(outputs: Any) -> List[Dict[str, Any]]:
     """
     abc_dicts = []
 
-    for d in _iter_nested_dicts(outputs):
+    for d in iter_nested_dicts(outputs):
         if all(k in d for k in ["A", "B", "C"]):
             abc_dicts.append(d)
 
     return abc_dicts
-
 
 def _collect_mhc_alpha_metrics_from_model(
     model: Optional[nn.Module],
@@ -40,7 +39,7 @@ def _collect_mhc_alpha_metrics_from_model(
     if model is None:
         return metrics
 
-    raw_model = _unwrap_model(model)
+    raw_model = unwrap_model(model)
 
     alpha_A_values = []
     alpha_B_values = []
