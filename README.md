@@ -511,6 +511,6 @@ If you use this implementation or adapt its modules for your research, please co
   year         = {2026},
   publisher    = {GitHub},
   journal      = {GitHub repository},
-  howpublished = {\url{https://github.com/pablo-reyes8/deepseek-v4-mini}}
+  howpublished = {\url{https://github.com/pablo-reyes8/deepseek-v4-mini-pytorch}}
 }
 ```
