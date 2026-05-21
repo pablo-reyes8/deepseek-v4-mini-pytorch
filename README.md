@@ -559,7 +559,7 @@ This project aims to be a faithful mini representation of the architectural idea
 - **Dataset cards:** WikiText, TinyStories, AG News, IMDB, MiniPile, FineWeb-Edu sample on Hugging Face
 
 
-This implementation is based on the DeepSeek-V4 technical report:
+This implementation is compleptly based on the DeepSeek-V4 technical report:
 
 ```bibtex
 @misc{deepseekai2026deepseekv4,
