@@ -560,7 +560,7 @@ This project aims to be a faithful mini representation of the architectural idea
 - **Dataset cards:** WikiText, TinyStories, AG News, IMDB, MiniPile, FineWeb-Edu sample on Hugging Face
 
 
-This implementation is based on the DeepSeek-V4 technical report:
+This implementation is compleptly based on the DeepSeek-V4 technical report:
 
 ```bibtex
 @misc{deepseekai2026deepseekv4,
@@ -584,3 +584,10 @@ If you use this implementation or adapt its modules for your research, please co
   howpublished = {\url{https://github.com/pablo-reyes8/deepseek-v4-mini-pytorch}}
 }
 ```
+
+## License
+
+This project is licensed under the **MIT License**.  
+See the [LICENSE](LICENSE) file for the full legal text.
+
+Copyright (c) 2026 Pablo Reyes.
