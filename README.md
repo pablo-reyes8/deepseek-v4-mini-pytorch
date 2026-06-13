@@ -2,7 +2,6 @@
   <img src="assets\header_image.png" width="1000"/>
 </p>
 
-
 # DeepSeek-V4 Mini: A Paper-Faithful From-Scratch PyTorch Implementation
 
 ![Python](https://img.shields.io/badge/python-3.9+-blue.svg)
