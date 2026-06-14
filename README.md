@@ -345,8 +345,7 @@ train_loader, val_loader, tokenizer = create_hf_text_dataloaders(
     vocab_size=4096,
     max_tokenizer_documents=1000,
     max_train_documents=1000,
-    max_validation_documents=200,
-)
+    max_validation_documents=200,)
 
 model = DeepSeekV4LM(
     DeepSeekV4LMConfig(
@@ -360,9 +359,7 @@ model = DeepSeekV4LM(
         head_dim=16,
         rotary_dim=16,
         ffn_type="dense",
-        mlp_hidden_dim=128,
-    )
-)
+        mlp_hidden_dim=128,))
 
 history = train_deepseekv4(
     model=model,
@@ -375,8 +372,7 @@ history = train_deepseekv4(
     epochs=1,
     max_batches_per_epoch=10,
     eval_max_batches=5,
-    ckpt_dir="checkpoints/wikitext2_tiny",
-)
+    ckpt_dir="checkpoints/wikitext2_tiny",)
 ```
 
 ## Training With Batches and Indexing
