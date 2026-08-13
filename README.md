@@ -438,25 +438,24 @@ results = ablation_1(
         "block_size": 128,
         "batch_size": 4,
         "num_train_examples": 2_000,
-        "num_val_examples": 300,
-    },
+        "num_val_examples": 300,},
+
     max_model={
         "d_model": 128,
         "n_layers": 4,
         "max_seq_len": 128,
         "n_heads": 4,
-        "head_dim": 32,
-    },
+        "head_dim": 32,},
+
     training_config={
         "epochs": 1,
         "max_batches_per_epoch": 30,
         "eval_max_batches": 10,
         "optimizer_type": "adamw",
-        "device": "cuda",
-    },
+        "device": "cuda",},
+
     seeds=[1],
-    quick=False,
-)
+    quick=False)
 ```
 
 CLI smoke run:
